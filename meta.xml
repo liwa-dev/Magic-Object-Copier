@@ -1,0 +1,4 @@
+<meta>
+	<info name="MOC" author="LIWA" version="2.0" type="misc"/>
+	<script src="client.lua" type="client" cache="false"/>
+</meta>
