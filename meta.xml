@@ -5,5 +5,7 @@
 	<script src="server.lua" type="server"/>
 	<aclrequest>
 	    <right name="function.fetchRemote" access="true" />
+	    <right name="function.restartResource" access="true" />
+		
 	</aclrequest>
 </meta>

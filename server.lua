@@ -40,9 +40,15 @@ function updateFiles()
     end
 
     setTimer(function()
-        restartResource(getThisResource())
-        outputChatBox("MOC: Resource updated and will restart now.", root, 255,
-                      0, 0)
+        if hasObjectPermissionTo(getThisResource(), "function.restartResource", false) then
+            restartResource(getThisResource())
+            outputChatBox("MOC: Resource updated and will restart now.", root, 255,0, 0)
+        else
+            outputChatBox(
+                "MOC: Failed to restart resource. Please do manually restart the resource.",
+                root, 255, 0, 0)
+            outputChatBox("MOC: Please run: /aclrequest allow moc all", root, 255, 0, 0)
+        end
     end, 3000, 1)
 end
 
@@ -52,6 +58,8 @@ function checkForUpdatesManual(player)
         fetchRemote(baseURL .. "version.txt", function(response, errorCode)
             if errorCode == 0 then
                 response = response:gsub("^%s*(.-)%s*$", "%1")
+                print("Current version: " .. currentVersion)
+                print("Remote version: " .. response)
                 if response ~= currentVersion then
                     outputChatBox(
                         "MOC: New version detected! Updating... Please wait",
